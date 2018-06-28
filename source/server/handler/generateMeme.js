@@ -20,8 +20,8 @@ async function generateMeme(request, reply) {
 
     var topLineCount = payload['top-text'].split('\\n').length;
     var bottomLineCount = payload['bottom-text'].split('\\n').length;
-    var bottomBorder, topBorder = 0;
-    if (payload['border']) {
+    var topBorder = 0, bottomBorder = 0;
+    if (payload['border'] == 'true') {
         topBorder = Math.round(
             (payload['font-size'] * topLineCount * 1.2) +
             (payload['padding'] * 2));
