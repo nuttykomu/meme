@@ -2,13 +2,14 @@
   "name": "me2",
   "version": "1.0.0",
   "description": "A meme maker.",
-  "main": "source/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "curl --form image=@graph.png --output output.png http://localhost:8080/generate",
+    "start": "node source/server/server.js"
   },
   "author": "Nuttykomu (ナッティ)",
   "license": "MIT",
   "dependencies": {
-    "hapi": "^17.5.2"
+    "hapi": "^17.5.2",
+    "inert": "^5.1.0"
   }
 }
