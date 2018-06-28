@@ -1,5 +1,6 @@
 const GenerateMemeHandler = require('./handler/generateMeme');
 const ServeMemeHandler = require('./handler/serveMeme');
+const Joi = require('joi');
 
 module.exports = [
     {
@@ -11,11 +12,21 @@ module.exports = [
         method: 'POST',
         path: '/generate',
         handler: GenerateMemeHandler,
-        config: {
+        options: {
             payload: {
                 output: 'stream',
                 allow: 'multipart/form-data'
             },
+            validate: {
+                query: {
+                    'top-text': Joi.string(),
+                    'bottom-text': Joi.string(),
+                    'font-size': Joi.number().integer().min(1),
+                    'stroke-width': Joi.number().integer().min(0),
+                    'padding': Joi.number().integer().min(0),
+                    'border': Joi.boolean()
+                }
+            }
         }
     },
     {
