@@ -1,4 +1,5 @@
 const GenerateMemeHandler = require('./handler/generateMeme');
+const ServeMemeHandler = require('./handler/serveMeme');
 
 module.exports = [
     {
@@ -16,5 +17,10 @@ module.exports = [
                 allow: 'multipart/form-data'
             },
         }
+    },
+    {
+        method: 'GET',
+        path: '/m/{uuid}',
+        handler: ServeMemeHandler
     }
 ];
