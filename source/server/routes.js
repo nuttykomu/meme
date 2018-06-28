@@ -12,8 +12,6 @@ module.exports = [
         handler: GenerateMemeHandler,
         config: {
             payload: {
-                // This will allow files (our base image) to
-                // our server via a POST request.
                 output: 'stream',
                 allow: 'multipart/form-data'
             },
