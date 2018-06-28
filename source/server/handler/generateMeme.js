@@ -1,18 +1,19 @@
 const FileSystem = require('fs');
-const Spawn = require('child_process').spawn;
+const Execute = require('child_process').exec;
+const Util = require('util');
 const UUID = require('uuid/v4');
 const MEME_DIRECTORY = './memes';
 
 async function generateMeme(request, reply) {
-    // ┌───────────────────┐
-    // │ request.payload   │
-    // │ ├── image         │
-    // │ ├── top-text      │
-    // │ ├── bottom-text   │
-    // │ ├── font-size     │
-    // │ ├── line-spacing  │
-    // │ └── stroke-width  │
-    // └───────────────────┘
+    // ┌────────────────────┐
+    // │  request.payload   │
+    // │  ├── image         │
+    // │  ├── top-text      │
+    // │  ├── bottom-text   │
+    // │  ├── font-size     │
+    // │  ├── line-spacing  │
+    // │  └── stroke-width  │
+    // └────────────────────┘
     const payload = request.payload;
     const options = [];
 
@@ -28,8 +29,6 @@ async function generateMeme(request, reply) {
         {'stroke': 'black'},
         {'strokewidth': payload['stroke-width']}
     ]);
-
-    console.log(commandBuilder(options, 'graph.png', 'output.png'));
 
     // Create meme directory.
     await FileSystem.stat(MEME_DIRECTORY, async (error) => {
@@ -48,23 +47,21 @@ async function generateMeme(request, reply) {
         payload.image.on('error', reject);
     });
 
-    // -----------------------------------------------
-    // TODO: Generate the meme from the image here.
-    // -----------------------------------------------
-
-    return reply.file('graph.png');
+    // Generate the meme.
+    const command = commandBuilder(options, filename);
+    await Util.promisify(Execute)(command);
+    return reply.file(`${MEME_DIRECTORY}/${filename}`);
 }
 
-function commandBuilder(options, input, output) {
+function commandBuilder(options, filename) {
     var flags = '';
     options.forEach(flag => {
-        console.log(flag);
         Object.entries(flag).forEach(([key, value]) => {
             flags += `-${key} ${value} `;
         });
     });
-
-    return `magick convert ${flags} ${input} ${output}`;
+    const target = `${MEME_DIRECTORY}/${filename} `;
+    return `magick convert ${flags} ${target.repeat(2)}`;
 }
 
 module.exports = generateMeme;
