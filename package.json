@@ -2,10 +2,13 @@
   "name": "me2",
   "version": "1.0.0",
   "description": "A meme maker.",
-  "main": "index.js",
+  "main": "source/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nuttykomu (ナッティ)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^17.5.2"
+  }
 }
