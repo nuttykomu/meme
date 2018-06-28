@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A meme maker.",
   "scripts": {
-    "test": "curl --form image=@graph.png --output output.png http://localhost:8080/generate",
+    "test": "sh test.sh",
     "start": "node source/server/server.js"
   },
   "author": "Nuttykomu (ナッティ)",
