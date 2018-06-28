@@ -1,4 +1,4 @@
-# ME² (Meme Maker)
+# メ² (Meme Maker)
 
 **[The Challenge]** Build a toy application that makes use of the following technologies:
 
