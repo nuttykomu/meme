@@ -18,10 +18,29 @@ async function generateMeme(request, reply) {
     const payload = request.payload;
     const options = [];
 
-    var topLineCount = payload['top-text'].split('\\n').length;
-    var bottomLineCount = payload['bottom-text'].split('\\n').length;
-    var topBorder = 0, bottomBorder = 0;
+    // Create meme directory.
+    await FileSystem.stat(MEME_DIRECTORY, async (error) => {
+        if (error != null) {
+            await FileSystem.mkdir(MEME_DIRECTORY);
+        }
+    });
+
+    // Save image to disk.
+    const filename = `${UUID()}.png`;
+    const file = FileSystem.createWriteStream(`${MEME_DIRECTORY}/${filename}`);
+    payload.image.pipe(file);
+
+    await new Promise((resolve, reject) => {
+        payload.image.on('end', () => resolve());
+        payload.image.on('error', reject);
+    });
+
+    // Compute border heights (if applicable).
     if (payload['border'] == 'true') {
+        var topLineCount = payload['top-text'].split('\\n').length;
+        var bottomLineCount = payload['bottom-text'].split('\\n').length;
+        var topBorder = 0, bottomBorder = 0;
+
         topBorder = Math.round(
             (payload['font-size'] * topLineCount * 1.2) +
             (payload['padding'] * 2));
@@ -30,6 +49,7 @@ async function generateMeme(request, reply) {
             (payload['padding'] * 2));
     }
 
+    // Parse payload parameters.
     options.push(...[
         {'font': 'source/server/font/impact.ttf'},
         {'pointsize': payload['font-size']},
@@ -49,23 +69,6 @@ async function generateMeme(request, reply) {
             {'strokewidth': payload['stroke-width']}
         ]);
     }
-
-    // Create meme directory.
-    await FileSystem.stat(MEME_DIRECTORY, async (error) => {
-        if (error != null) {
-            await FileSystem.mkdir(MEME_DIRECTORY);
-        }
-    });
-
-    // Save image to disk.
-    const filename = `${UUID()}.png`;
-    const file = FileSystem.createWriteStream(`${MEME_DIRECTORY}/${filename}`);
-    payload.image.pipe(file);
-
-    await new Promise((resolve, reject) => {
-        payload.image.on('end', () => resolve());
-        payload.image.on('error', reject);
-    });
 
     // Generate the meme.
     const command = commandBuilder(options, filename);
