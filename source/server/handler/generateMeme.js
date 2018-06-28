@@ -8,27 +8,47 @@ async function generateMeme(request, reply) {
     // ┌────────────────────┐
     // │  request.payload   │
     // │  ├── image         │
+    // │  ├── border        │
+    // │  ├── padding       │
     // │  ├── top-text      │
     // │  ├── bottom-text   │
     // │  ├── font-size     │
-    // │  ├── line-spacing  │
     // │  └── stroke-width  │
     // └────────────────────┘
     const payload = request.payload;
     const options = [];
 
+    var topLineCount = payload['top-text'].split('\\n').length;
+    var bottomLineCount = payload['bottom-text'].split('\\n').length;
+    var bottomBorder, topBorder = 0;
+    if (payload['border']) {
+        topBorder = Math.round(
+            (payload['font-size'] * topLineCount * 1.2) +
+            (payload['padding'] * 2));
+        bottomBorder = Math.round(
+            (payload['font-size'] * bottomLineCount * 1.2) +
+            (payload['padding'] * 2));
+    }
+
     options.push(...[
         {'font': 'source/server/font/impact.ttf'},
         {'pointsize': payload['font-size']},
-        {'interline-spacing': payload['line-spacing']},
+        {'background': 'black'},
         {'gravity': 'north'},
-        {'annotate': `+0+0 "${payload['top-text']}"`},
+        {'splice': `0x${topBorder}`},
+        {'annotate': `+0+${payload['padding']} "${payload['top-text']}"`},
         {'gravity': 'south'},
-        {'annotate': `+0+0 "${payload['bottom-text']}"`},
-        {'fill': 'white'},
-        {'stroke': 'black'},
-        {'strokewidth': payload['stroke-width']}
+        {'splice': `0x${bottomBorder}`},
+        {'annotate': `+0+${payload['padding']} "${payload['bottom-text']}"`},
+        {'fill': 'white'}
     ]);
+
+    if (payload['stroke-width'] != 0) {
+        options.push(...[
+            {'stroke': 'black'},
+            {'strokewidth': payload['stroke-width']}
+        ]);
+    }
 
     // Create meme directory.
     await FileSystem.stat(MEME_DIRECTORY, async (error) => {
