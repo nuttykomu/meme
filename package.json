@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A meme maker.",
   "scripts": {
-    "test": "sh test.sh",
+    "test": "sh test/test.sh",
     "start": "node source/server/server.js"
   },
   "author": "Nuttykomu (ナッティ)",
