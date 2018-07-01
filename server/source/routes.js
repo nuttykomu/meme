@@ -6,7 +6,22 @@ module.exports = [
     {
         method: 'GET',
         path: '/',
-        handler: (request, h) => h.file('../client/index.html', { confine: false })
+        handler: (request, h) => {
+            return h.file(
+                '../client/index.html',
+                { confine: false }
+            );
+        }
+    },
+    {
+        method: 'GET',
+        path: '/bundle/{filename}',
+        handler: (request, h) => {
+            return h.file(
+                `../client/bundle/${request.params.filename}`,
+                { confine: false }
+            );
+        }
     },
     {
         method: 'POST',
