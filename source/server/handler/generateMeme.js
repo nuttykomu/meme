@@ -51,7 +51,7 @@ async function generateMeme(request, reply) {
 
     // Parse payload parameters.
     options.push(...[
-        {'font': 'source/server/font/impact.ttf'},
+        {'font': 'font/impact.ttf'},
         {'pointsize': payload['font-size']},
         {'background': 'black'},
         {'gravity': 'north'},
