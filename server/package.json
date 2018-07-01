@@ -4,7 +4,7 @@
   "description": "A meme maker.",
   "scripts": {
     "test": "sh test/test.sh",
-    "start": "node server.js"
+    "start": "node source/server.js"
   },
   "author": "Nuttykomu (ナッティ)",
   "license": "MIT",

@@ -6,7 +6,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/',
-        handler: (request, h) => 'Hello from メ²!'
+        handler: (request, h) => h.file('../client/index.html', { confine: false })
     },
     {
         method: 'POST',

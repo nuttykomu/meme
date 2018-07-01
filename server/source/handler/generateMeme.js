@@ -2,6 +2,8 @@ const FileSystem = require('fs');
 const Execute = require('child_process').exec;
 const Util = require('util');
 const UUID = require('uuid/v4');
+
+const IMPACT_DIRECTORY = 'source/font/impact.ttf';
 const MEME_DIRECTORY = './memes';
 
 async function generateMeme(request, reply) {
@@ -51,7 +53,7 @@ async function generateMeme(request, reply) {
 
     // Parse payload parameters.
     options.push(...[
-        {'font': 'font/impact.ttf'},
+        {'font': IMPACT_DIRECTORY},
         {'pointsize': payload['font-size']},
         {'background': 'black'},
         {'gravity': 'north'},
