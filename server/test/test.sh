@@ -6,5 +6,4 @@ curl \
     --form stroke-width="0" \
     --form padding="30" \
     --form border=true \
-    --output test/output.png \
     http://localhost:8080/generate

@@ -1,3 +1,4 @@
+const Configuration = require('../config.json');
 const FileSystem = require('fs');
 const Execute = require('child_process').exec;
 const Util = require('util');
@@ -6,17 +7,18 @@ const UUID = require('uuid/v4');
 const IMPACT_DIRECTORY = 'source/font/impact.ttf';
 const MEME_DIRECTORY = './memes';
 
+// ┌────────────────────┐
+// │  request.payload   │
+// │  ├── image         │
+// │  ├── border        │
+// │  ├── padding       │
+// │  ├── top-text      │
+// │  ├── bottom-text   │
+// │  ├── font-size     │
+// │  └── stroke-width  │
+// └────────────────────┘
+
 async function generateMeme(request, reply) {
-    // ┌────────────────────┐
-    // │  request.payload   │
-    // │  ├── image         │
-    // │  ├── border        │
-    // │  ├── padding       │
-    // │  ├── top-text      │
-    // │  ├── bottom-text   │
-    // │  ├── font-size     │
-    // │  └── stroke-width  │
-    // └────────────────────┘
     const payload = request.payload;
     const options = [];
 
@@ -75,7 +77,9 @@ async function generateMeme(request, reply) {
     // Generate the meme.
     const command = commandBuilder(options, filename);
     await Util.promisify(Execute)(command);
-    return reply.file(`${MEME_DIRECTORY}/${filename}`);
+
+    // Return the URL of the meme.
+    return `${Configuration.host}:${Configuration.port}/m/${filename.split('.')[0]}`;
 }
 
 function commandBuilder(options, filename) {
