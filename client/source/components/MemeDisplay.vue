@@ -1,6 +1,8 @@
 <template>
-    <div class="column is-8">
-        <img :src="memeUrl">
+    <div class="column is-9">
+        <center>
+            <img :src="memeUrl">
+        </center>
     </div>
 </template>
 
@@ -12,6 +14,15 @@ export default {
 
 <style scoped>
 div {
-    margin: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ccc;
+}
+
+img {
+    max-width: 100%;
+    max-height: 80vh;
 }
 </style>

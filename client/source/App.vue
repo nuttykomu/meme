@@ -24,5 +24,6 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '../node_modules/bulma/css/bulma.css';
 </style>

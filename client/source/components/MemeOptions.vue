@@ -1,15 +1,15 @@
 <template>
-    <aside class="column is-4">
+    <aside class="column">
         <form
             enctype="multipart/form-data"
             @submit.prevent="generateMeme">
 
-            Meme Image:<br>
+            Upload Image:<br>
             <input
                 type="file"
                 ref="image"
                 @change="updateImage">
-            <br>
+            <br><br>
 
             Top Text:<br>
             <textarea
@@ -19,7 +19,7 @@
             Bottom Text:<br>
             <textarea
                 v-model="bottomText">
-            </textarea><br>
+            </textarea><br><br>
 
             Font Size:<br>
             <input
@@ -29,6 +29,7 @@
                 value="32"
                 class="slider"
                 v-model="options['font-size']">
+            <span>{{ options['font-size'] + ' px' }}</span>
             <br>
 
             Stroke Width:<br>
@@ -39,6 +40,7 @@
                 value="2"
                 class="slider"
                 v-model="options['stroke-width']">
+            <span>{{ options['stroke-width'] + ' px' }}</span>
             <br>
 
             Padding:<br>
@@ -49,15 +51,17 @@
                 value="0"
                 class="slider"
                 v-model="options.padding">
-            <br>
+            <span>{{ options.padding + ' px' }}</span>
+            <br><br>
 
             Border:
             <input
                 type="checkbox"
                 v-model="options.border">
-            <br>
+            <br><br>
 
             <button>Generate Meme</button>
+            <slider></slider>
         </form>
     </aside>
 </template>
@@ -122,7 +126,81 @@ export default {
 </script>
 
 <style scoped>
+aside {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1em;
+    background-color: #013243;
+    width: 100%;
+}
+
 form {
-    margin: 20px;
+    margin: 10%;
+}
+
+span {
+    position: relative;
+    top: -5px;
+    font-size: 0.8em;
+}
+
+textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    padding: 10px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 20px;
+    background: linear-gradient(to right, #C5EFF7 0%, #C5EFF7 100%);
+    background-size: 100% 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+}
+
+input[type="range"]:first-of-type {
+    margin-top: 30px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #E4F1FE;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb:after {
+    content: " ";
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    top: 5px;
+    background: #E4F1FE;
+    background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
+}
+
+button {
+    width: 100%;
+    outline: none;
+    align-self: center;
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    background: #E4F1FE;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
 }
 </style>
