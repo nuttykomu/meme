@@ -203,4 +203,34 @@ button {
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
+
+input[type="checkbox"] {
+    position: relative;
+    top: 5px;
+    left: 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    position: relative;
+    height: 20px;
+    width: 40px;
+    box-shadow: inset -20px 0px 0px 1px rgba(192, 192, 192, 0.5);
+    background-color: white;
+    border: 1px solid rgba(192, 192, 192, 1);
+    outline: none;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    border: 1px solid #333;
+}
+
+input[type="checkbox"]:checked {
+    box-shadow: inset 20px 0px 0px 1px rgba(33, 150, 243, 0.5);
+    border: 1px solid #333;
+}
+
+input[type="checkbox"]::-ms-check {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
 </style>
