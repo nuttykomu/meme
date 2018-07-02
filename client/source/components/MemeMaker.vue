@@ -1,7 +1,7 @@
 <template>
     <section class="columns">
-        <meme-options></meme-options>
-        <meme-display :meme-url='memeUrl'></meme-display>
+        <meme-options @generate="updateUrl"></meme-options>
+        <meme-display :meme-url="memeUrl"></meme-display>
     </section>
 </template>
 
@@ -14,6 +14,11 @@ export default {
         return {
             'memeUrl': ''
         };
+    },
+    methods: {
+        updateUrl (url) {
+            this.memeUrl = url;
+        }
     },
     components: {
         'meme-display': MemeDisplay,

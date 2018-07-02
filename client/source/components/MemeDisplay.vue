@@ -1,5 +1,5 @@
 <template>
-    <div class="column is-9">
+    <div class="column is-8">
         <img :src="memeUrl">
     </div>
 </template>
