@@ -79,7 +79,7 @@ async function generateMeme(request, reply) {
     await Util.promisify(Execute)(command);
 
     // Return the URL of the meme.
-    return `${Configuration.host}:${Configuration.port}/m/${filename.split('.')[0]}`;
+    return `/m/${filename.split('.')[0]}`;
 }
 
 function commandBuilder(options, filename) {
