@@ -40,10 +40,10 @@ async function generateMeme(request, reply) {
     });
 
     // Compute border heights (if applicable).
+    var topBorder = 0, bottomBorder = 0;
     if (payload['border'] == 'true') {
         var topLineCount = payload['top-text'].split('\\n').length;
         var bottomLineCount = payload['bottom-text'].split('\\n').length;
-        var topBorder = 0, bottomBorder = 0;
 
         topBorder = Math.round(
             (payload['font-size'] * topLineCount * 1.2) +
