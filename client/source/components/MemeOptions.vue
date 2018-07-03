@@ -30,7 +30,6 @@
                 min="1"
                 max="100"
                 value="32"
-                class="slider"
                 v-model="options['font-size']">
             <span>{{ options['font-size'] + ' px' }}</span>
             <br>
@@ -41,7 +40,6 @@
                 min="0"
                 max="10"
                 value="2"
-                class="slider"
                 v-model="options['stroke-width']">
             <span>{{ options['stroke-width'] + ' px' }}</span>
             <br>
@@ -52,7 +50,6 @@
                 min="0"
                 max="100"
                 value="0"
-                class="slider"
                 v-model="options.padding">
             <span>{{ options.padding + ' px' }}</span>
             <br><br>
@@ -64,7 +61,6 @@
             <br><br>
 
             <button>Generate Meme</button>
-            <slider></slider>
         </form>
     </aside>
 </template>
