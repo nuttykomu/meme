@@ -12,7 +12,7 @@
 - [x] webpack
 - [ ] Docker (`TODO`)
 
-I developed メ² in order to learn the fundamentals of Vue.js and a few other technologies. In hindsight, I would have chosen a project with a bigger scope. The scope of this project was rather small so I never got the chance to use some of the more advanced features of the framework. While メ² was developed as a SPA, it only has a single page, so I didn't get the chance to use Vue Router to map different routes to different components. Furthermore, there weren't any complex interactions between different Vue components, so I didn't get the chance to use a fancy state management library like Veux or even a simple global event bus to facilitate component interactions. Just passing props from parent to child components and emitting values back up from child to parent components sufficed for this project.
+I developed メ² in order to learn the fundamentals of Vue.js and a few other technologies. In hindsight, I would have chosen a project with a bigger scope. The scope of this project was rather small so I never got the chance to use some of the more advanced features of the framework. While メ² was developed as a SPA, it only has a single page, so I didn't get the chance to use Vue Router to map different routes to different components. Furthermore, there weren't any complex interactions between different Vue components, so I didn't get the chance to use a fancy state management library like Vuex or even a simple global event bus to facilitate component interactions. Just passing props from parent to child components and emitting values back up from child to parent components sufficed for this project.
 
 ## Screenshot
 
