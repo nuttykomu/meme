@@ -4,6 +4,9 @@
             enctype="multipart/form-data"
             @submit.prevent="generateMeme">
 
+            <meme-logo></meme-logo>
+            <br>
+
             Upload Image:<br>
             <input
                 type="file"
@@ -68,6 +71,7 @@
 
 <script>
 import Axios from 'axios';
+import MemeLogo from './MemeLogo';
 
 export default {
     data () {
@@ -121,6 +125,9 @@ export default {
                     console.log(error);
                 });
         }
+    },
+    components: {
+        'meme-logo': MemeLogo
     }
 };
 </script>
