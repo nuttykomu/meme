@@ -11,6 +11,7 @@
             <input
                 type="file"
                 ref="image"
+                accept="image/*"
                 @change="updateImage">
             <br><br>
 
