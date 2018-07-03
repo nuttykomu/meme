@@ -1,12 +1,10 @@
 <template>
     <div id="app">
-        <header-section></header-section>
         <meme-maker></meme-maker>
     </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
 import MemeMaker from './components/MemeMaker.vue';
 
 export default {
@@ -17,7 +15,6 @@ export default {
         }
     },
     components: {
-        "header-section": Header,
         "meme-maker": MemeMaker
     }
 };
@@ -26,4 +23,8 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '../node_modules/bulma/css/bulma.css';
+
+html, body {
+    height: 100%;
+}
 </style>

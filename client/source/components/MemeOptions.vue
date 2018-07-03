@@ -132,6 +132,7 @@ aside {
     font-size: 1em;
     background-color: #013243;
     width: 100%;
+    height: 100vh;
 }
 
 form {
